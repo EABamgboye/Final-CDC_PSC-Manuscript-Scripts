@@ -1,7 +1,10 @@
 suppressMessages({library(glmmTMB); library(dplyr); library(tidyr); library(ggplot2); library(splines); library(MASS)})
 set.seed(42)
-d <- read.csv("wet_hourly_biting_data.csv")
+
+d <- read.csv("C:/Users/ebamg/Urban Malaria Proj Dropbox/urban_malaria/data/nigeria/kano_ibadan/kano_ibadan_ento/wet_hourly_biting_data.csv")
+
 hl <- c("6-7pm","7-8pm","8-9pm","9-10pm","10-11pm","11-12am","12-1am","1-2am","2-3am","3-4am","4-5am","5-6am")
+
 d <- d %>% mutate(ward=factor(ward), location=factor(location, levels=c("Indoor","Outdoor")),
   hour=factor(hour, levels=hl), hour_num=as.numeric(hour)-1, hh_id=factor(hh_id), night_id=factor(night_id),
   hhnight=interaction(hh_id, night_id, drop=TRUE), trapnight=interaction(hh_id, night_id, location, drop=TRUE))
